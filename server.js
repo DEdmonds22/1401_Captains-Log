@@ -26,5 +26,16 @@ app.get('/logs/new', (req, res) => {
     res.render('New');
 });
 
+// Create Route
+app.post('/logs', (req, res) => {
+    if (req.body.shipIsBroken === 'on'){
+        req.body.shipIsBroken = true;
+    } else {
+        req.body.shipIsBroken = false;
+    };
+    
+    res.send(req.body);
+});
+
 // Server Listener
 app.listen(4000, () => console.log('Server is Listening!'))
