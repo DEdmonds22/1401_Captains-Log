@@ -75,6 +75,15 @@ app.get('/logs/new', (req, res) => {
     res.render('New');
 });
 
+// Delete Route
+app.delete('/logs/:id', (req,res) => {
+    Log.deleteOne({_id: req.params.id})
+        .then(() => {
+            res.redirect("/logs")
+        })
+        .catch(error => console.error(error));
+});
+
 // Create Route
 app.post('/logs', (req, res) => {
     if (req.body.shipIsBroken === 'on'){
