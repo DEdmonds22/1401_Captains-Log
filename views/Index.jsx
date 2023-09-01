@@ -7,8 +7,8 @@ const Index = ({logs}) => {
             <ul>
                 {logs.map((log, i) => {
                     return (
-                        <li>
-                            {log.title}
+                        <li key={i}>
+                            <a href={`/logs/${log._id}`}>{log.title}</a>
                         </li>
                     );
                 })}

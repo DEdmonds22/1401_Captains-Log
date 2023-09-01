@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 app.get('/logs/seed', (req, res) => {
     // array of starter snacks
     const starterLogs = [
-        { title: 'Day 1', entry: `Our first day out to sea. Hope the lads are ready. Even more I hipe we find loot.`, shipIsBroken: false
+        { title: 'Day 1', entry: `Our first day out to sea. Hope the lads are ready. Even more I hope we find loot.`, shipIsBroken: false
         },
         { title: 'End of Day 1', entry: `Well, the lads did great. Lamb got his sea legs today and Patch found a reckage about 600 kil out. We'll reach the point tommorow morn, if we're lucky`, shipIsBroken: false
         },
@@ -90,6 +90,16 @@ app.post('/logs', (req, res) => {
         .catch(error => {
             console.error(error);
         });
+});
+
+// Show Route
+app.get('/logs/:id', (req, res) => {
+    Log.findOne({_id: req.params.id})
+        .then(log => {
+            console.log(log)
+            res.render('Show', {log: log})
+        })
+        .catch(error => console.error(error));
 });
 
 // Server Listener
