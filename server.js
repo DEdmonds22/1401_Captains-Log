@@ -101,6 +101,15 @@ app.post('/logs', (req, res) => {
         });
 });
 
+// Edit Route
+app.get('/logs/:id/edit', (req, res) => {
+    Log.findOne({_id: req.params.id})
+        .then(log => {
+            res.render('Edit', {log: log})
+        })
+        .catch(error => console.error(error));
+});
+
 // Show Route
 app.get('/logs/:id', (req, res) => {
     Log.findOne({_id: req.params.id})

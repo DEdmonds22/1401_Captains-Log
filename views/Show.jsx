@@ -4,8 +4,8 @@ const Show = ({log}) => {
     return (
         <>
             <h1>{log.title}</h1>
-            <h3>Ship's Status: {log.shipIsBroken ? 'Yes' : "No"}</h3>
-            <p>"{log.entry}" - Captain Fizzle</p>
+            <h3>Repairs Needed: {log.shipIsBroken ? 'Yes' : "No"}</h3>
+            <p>"{log.entry}" - <strong>Captain Fizzle</strong></p>
             <a href='/logs'>back to logs</a>
         </>
     )
