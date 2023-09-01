@@ -5,6 +5,15 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
+const Log = require('./models/Logs')
+
+// Database Connection
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI,  {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
+
 // Create App Object
 const app = express();
 app.engine('jsx', require('express-react-views').createEngine());
@@ -33,8 +42,14 @@ app.post('/logs', (req, res) => {
     } else {
         req.body.shipIsBroken = false;
     };
-    
-    res.send(req.body);
+
+    Log.create(req.body)
+        .then(addedLog => {
+            res.redirect('/logs');
+        })
+        .catch(error => {
+            console.error(error);
+        });
 });
 
 // Server Listener
