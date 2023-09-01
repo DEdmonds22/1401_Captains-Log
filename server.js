@@ -84,6 +84,20 @@ app.delete('/logs/:id', (req,res) => {
         .catch(error => console.error(error));
 });
 
+// Update Route
+app.put('/logs/:id', (req, res) => {
+    console.log(req.body)
+    if (req.body.shipIsBroken === 'on'){
+        req.body.shipIsBroken = true;
+    } else {
+        req.body.shipIsBroken = false;
+    };
+    console.log(req.body)
+    Log.updateOne({ _id: req.params.id }, req.body, { new: true })
+    .then(()=> res.redirect('/logs'))
+    .catch(error => console.error(error));
+})
+
 // Create Route
 app.post('/logs', (req, res) => {
     if (req.body.shipIsBroken === 'on'){

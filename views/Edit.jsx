@@ -10,7 +10,7 @@ const Edit = ({log}) => {
                     <br />
                     <label>Entry: <input type='text' name='entry' placeholder={log.entry} value={log.entry} /></label>
                     <br />
-                    <label>Is the Ship Broken: <input type='checkbox' name='shipIsBroken' value={log.shipIsBroken} /></label>
+                    <label>Is the Ship Broken: <input type='checkbox' name='shipIsBroken' /></label>
                 </fieldset>
                 <input type='submit' value='Edit Log' />
             </form>
